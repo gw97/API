@@ -10,7 +10,10 @@ from time import sleep
 from Adafruit_CCS811 import Adafruit_CCS811
 import datetime
 import gspread
+import logging
 from oauth2client.service_account import ServiceAccountCredentials
+
+logging.basicConfig(filename = 'app.log', level = logging.INFO)
 
 ccs =  Adafruit_CCS811()
 while not ccs.available():
@@ -63,7 +66,7 @@ while Menu != 'q':
         length = int((inputno(1,'Run test for how many minutes: ',1,1500))*60/frequency)
         i = 3
         start_time = time.time()
-		
+
         while(i < length+3):
             try:
                 t1 = time.time()
@@ -76,7 +79,8 @@ while Menu != 'q':
 	                        sheet.update_cell(i,2+5*(int(f)-1), VOC)
 	                        sheet.update_cell(i,3+5*(int(f)-1), CO2)
 	                        sheet.update_cell(i,4+5*(int(f)-1), temp)
-						except:
+						except Exception as e:
+							logging.error('Error occurred in sheet updating' + str(e))
 							pass
 
                         with open('VOCdata'+now.strftime("%Y-%m-%d %H-%M")+'.txt' ,'a+') as d:
@@ -91,10 +95,9 @@ while Menu != 'q':
 					try:
 		            	authenticate()
 		            	sheet = client.open("VOC Data").sheet1
-					except:
+					except Exception as e:
+						logging.error('Error occurred in authentication' + str(e))
 						pass
-	            else:
-	            	pass
 
                 t2 = time.time()
                 if frequency-(t2-t1) <= 0:
@@ -103,7 +106,8 @@ while Menu != 'q':
                     sleep(frequency-(t2-t1))
                 i += 1
 
-            except:
+            except Exception as e:
+				logging.error('Error occurred in full code' + str(e))
                 print 'err',i
 				sleep(10)
         d.close()
