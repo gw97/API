@@ -92,9 +92,9 @@ while Menu != 'q':
 					pass
 
 				with open('Tempdata'+now.strftime("%Y-%m-%d %H-%M")+'.txt' ,'a+') as d:
-					s =  str(current_time) + ',' + str(Temperature_1) + ',' + str(Temperature_2)+ ',' + str(Temperature_3)
+					s =  current_time + ',' + str(Temperature_1) + ',' + str(Temperature_2)+ ',' + str(Temperature_3)
 					print (s)
-					print (d, file=s)
+					print (s, file=d)
 #writes data to the backup datafile seperated by a comma
 
 				if i % (5*6)/frequency == 0:
@@ -120,9 +120,9 @@ while Menu != 'q':
 					sleep(frequency-(t2-t1))
 				i += 1
 
-		except Exception as e:
-			logging.error('Error occurred in full code' + str(e))
-			print 'err',i
+			except Exception as e:
+				logging.error('Error occurred in full code' + str(e))
+				print ('err',i)
 #Any extra error will be caught by this logging system, and will rerun the
 #content of the while loop
 				sleep(10)
