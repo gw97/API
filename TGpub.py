@@ -58,13 +58,15 @@ while Menu != 'q':
 		sheet = client.open("Temperature Data").sheet1
 #Opens the correct sheet and correct tab, if the sheet is changed this needs
 #changing
-		sheet.update_cell(1,1+5*(int(f)-1),'Test Number: '+f)
-		sheet.update_cell(1,2+5*(int(f)-1),g)
+		sheet.update_cell(1,1+7*(int(f)-1),'Test Number: '+f)
+		sheet.update_cell(1,2+7*(int(f)-1),g)
 #Labels the data run with the number and specified name
-		sheet.update_cell(2,1+5*(int(f)-1),'Time (s)')
-		sheet.update_cell(2,2+5*(int(f)-1),'Temperature 1 (°C)')
-		sheet.update_cell(2,3+5*(int(f)-1),'Temperature 2  (°C)')
-		sheet.update_cell(2,4+5*(int(f)-1),'Temperature 3  (°C)')
+		sheet.update_cell(2,1+7*(int(f)-1),'Time (s)')
+		sheet.update_cell(2,2+7*(int(f)-1),'Temperature 1 (°C)')
+		sheet.update_cell(2,3+7*(int(f)-1),'Temperature 2  (°C)')
+		sheet.update_cell(2,4+7*(int(f)-1),'Temperature 3  (°C)')
+		sheet.update_cell(2,5+7*(int(f)-1),'Temperature 4  (°C)')
+		sheet.update_cell(2,6+7*(int(f)-1),'Temperature 5 (°C)')
 #Names the columns with the correct headings and units.
 		frequency = inputno(1,'Period of data reading in seconds: ',1,100)
 		length = int((inputno(1,'Run test for how many minutes: ',1,1500))*60/frequency)
@@ -78,13 +80,15 @@ while Menu != 'q':
 			try:
 				t1 = time.time()
 				current_time = str(time.time() - start_time)
-				Temperature_1,Temperature_2,Temperature_3 = datareading()
+				Temperature_1,Temperature_2,Temperature_3,Temperature_4,Temperature_5 = datareading()
 #Takes all readings, first checking if the VOC meter is functioning correctly
 				try:
-					sheet.update_cell(i,1+5*(int(f)-1), current_time)
-					sheet.update_cell(i,2+5*(int(f)-1), Temperature_1)
-					sheet.update_cell(i,3+5*(int(f)-1), Temperature_2)
-					sheet.update_cell(i,4+5*(int(f)-1), Temperature_3)
+					sheet.update_cell(i,1+7*(int(f)-1), current_time)
+					sheet.update_cell(i,2+7*(int(f)-1), Temperature_1)
+					sheet.update_cell(i,3+7*(int(f)-1), Temperature_2)
+					sheet.update_cell(i,4+7*(int(f)-1), Temperature_3)
+					sheet.update_cell(i,5+7*(int(f)-1), Temperature_4)
+					sheet.update_cell(i,6+7*(int(f)-1), Temperature_5)
 #updates all the cells in turn
 				except Exception as e:
 					logging.error('Error occurred in sheet updating' + str(e))
