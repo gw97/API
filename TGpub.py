@@ -20,6 +20,7 @@ def datareading():
 #Temperature probe management, this will not break and manages any exceptions, if the incorrect
 	data =[]
 	for sensor in W1ThermSensor.get_available_sensors():
+		data.append(sensor.get_temperature())
 #For each available sensor the data from the sensor will be printed into the data list, this
 #will cycle for as many sensors. The final insertion of the time ensures that the correct
 #time corresponding to the final probe entering its data into the list is recorded
