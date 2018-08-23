@@ -96,7 +96,8 @@ while Menu != 'q':
 					pass
 
 				with open('Tempdata'+now.strftime("%Y-%m-%d %H-%M")+'.txt' ,'a+') as d:
-					s =  current_time + ',' + str(Temperature_1) + ',' + str(Temperature_2)+ ',' + str(Temperature_3)
+					s = (current_time + ',' + str(Temperature_1) + ',' + str(Temperature_2)+ ',' + str(Temperature_3)
+						+ ',' + str(Temperature_4) + ',' + str(Temperature_5))
 					print (s)
 					print (s, file=d)
 #writes data to the backup datafile seperated by a comma
