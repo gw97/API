@@ -33,20 +33,20 @@ def authenticate():
 #.json file which needs to be in the same working directory as this python file
 
 def datareading():
-	t = str(time.time() - start_time)
-	x = str(ccs.getTVOC())
-	y = str(ccs.geteCO2())
+	time = str(time.time() - start_time)
+	VOCs = str(ccs.getTVOC())
+	CO2 = str(ccs.geteCO2())
 #T calculates the current time in seconds of the program when the reading is
 #taken. x and y are both variables assigned to the VOC and CO2 values taken
 #from the voc meter.
-	return (t,x,y)
+	return (time,VOCs,CO2)
 
-def inputno(g, a, lim1, lim2):
+def inputno(input_type, a, lim1, lim2):
 #This defines the function used to check user inputs are within range and of correct data type
-    if g == 1:
+    if input_type == 1:
         while True:
             try:
-                h = int(input(a))
+                h = int(input(input_text))
                 if lim1 <= h <= lim2:
                     return h
                 else:
