@@ -12,7 +12,7 @@ os.system("rm updateAPI.py")
 #os.system("rm updateAPI.py")
 #os.system("rm README.md")
 #clones repository
-os.system("git clone https://github.com/Chriisbrown/API.git")
+os.system("git clone https://github.com/gw97/API.git")
 time.sleep(20)
 #moves files out of API file to where update.py stored
 os.system("mv /home/pi/Temperature/API/TGpub.py /home/pi/Temperature/TGpub.py")
